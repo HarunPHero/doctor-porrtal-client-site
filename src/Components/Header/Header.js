@@ -1,7 +1,11 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import auth from '../../firebase.init';
 
 const Header = () => {
+  const [user] = useAuthState(auth);
+  
     return (
         <div className="navbar bg-base-100">
         <div className="navbar-start">
@@ -15,9 +19,11 @@ const Header = () => {
           <li><Link to="/">Home</Link></li>
             <li><Link to="/about">About</Link></li>
               <li><Link to="appointment">Appointment</Link></li>
-              <li><Link to="">Reviews</Link></li>
-              <li><Link to="">Contact us</Link></li>
-              <li><Link to="/login">Login</Link></li>
+             
+              <li>{ user? <>
+                <Link to="/dashboard">Dashboard</Link>
+               
+              </>:<Link to="/login">Login</Link>}</li>
           </ul>
         </div>
         <div className="dropdown dropdown-end">
@@ -28,9 +34,8 @@ const Header = () => {
               <li><Link to="/">Home</Link></li>
               <li><Link to="/about">About</Link></li>
               <li><Link to="appointment">Appointment</Link></li>
-              <li><Link to="">Reviews</Link></li>
-              <li><Link to="">Contact us</Link></li>
-              <li><Link to="/login">Login</Link></li>
+              <li>{ user ?  <Link to="/dashboard">Dashboard</Link>
+              :<Link to="/login">Login</Link>}</li>
             </ul>
           </div>
         </div>

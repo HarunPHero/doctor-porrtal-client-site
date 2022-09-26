@@ -1,48 +1,45 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   useSignInWithGoogle,
-  useSignInWithEmailAndPassword,
-  useSendPasswordResetEmail,
+  useCreateUserWithEmailAndPassword,
+  useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init.js";
 import { useForm } from "react-hook-form";
-import Loading from "../../Shared/Loading.js";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import Loading from "../../Shared/Loading";
+import { Link, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 import Footer from "../../Footer/Footer.js";
 import useToken from "../../hooks/useToken.js";
-const Login = () => {
+
+const Register = () => {
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const [email, setEmail] = useState("");
-
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
-  const [signInWithEmailAndPassword, user1, loading1, error1] =
-    useSignInWithEmailAndPassword(auth);
-  const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
-  const [token] = useToken(user || user1)
-
-  let errorMessage;
+  const [createUserWithEmailAndPassword, user1, loading1, error1] =
+    useCreateUserWithEmailAndPassword(auth);
+  const [updateProfile, updating, error2] = useUpdateProfile(auth);
+const [token] = useToken(user || user1)
   const navigate = useNavigate();
-  const location = useLocation();
-  let from = location.state?.from?.pathname || "/dashboard";
-
-  if (token) {
-    navigate(from, { replace: true });
-  }
-
-  if (error || error1) {
+  let errorMessage;
+  if (error || error1 || error2) {
     errorMessage = <p>Error: {error?.message || error1?.message}</p>;
   }
-
-  if (loading || loading1) {
+  if (token) {
+    navigate("/dashboard")
+  }
+  if (loading || loading1 || updating) {
     return <Loading></Loading>;
   }
-  const onSubmit = (data) => {
-    signInWithEmailAndPassword(data.email, data.password);
+  const onSubmit = async (data) => {
+    console.log(data);
+    await createUserWithEmailAndPassword(data.email, data.password);
+    await updateProfile({ displayName: data.name });
+    toast("Your profile has been updated");
+  
   };
   return (
     <>
@@ -58,6 +55,25 @@ const Login = () => {
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <div className="card-body">
               <form onSubmit={handleSubmit(onSubmit)}>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Name</span>
+                  </label>
+                  <input
+                    type="text"
+                    {...register("name", {
+                      required: {
+                        value: true,
+                        message: "Your Name is required",
+                      },
+                    })}
+                    placeholder="Name"
+                    className="input input-bordered"
+                  />
+                  {errors.name?.type === "required" && (
+                    <span style={{ color: "red" }}>{errors.name?.message}</span>
+                  )}
+                </div>
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Email</span>
@@ -76,7 +92,6 @@ const Login = () => {
                     })}
                     placeholder="email"
                     className="input input-bordered"
-                    onChange={(e) => setEmail(e.target.value)}
                   />
                   {errors.email?.type === "required" && (
                     <span style={{ color: "red" }}>
@@ -123,33 +138,16 @@ const Login = () => {
                   <input
                     className="btn btn-primary"
                     type="submit"
-                    value={"Login"}
+                    value={"Sign up"}
                   />
                 </div>
               </form>
               <h1>
-                New to Doctors Portal?{" "}
-                <Link to="/signUp" className="text-secondary">
-                  Create an account
+                Have an account?{" "}
+                <Link to="/login" className="text-secondary">
+                  Login
                 </Link>
               </h1>
-
-              <button
-                onClick={() => {
-                  sendPasswordResetEmail(email);
-                  if (email) {
-                    toast(
-                      "Please check your email inbox or spam to reset password"
-                    );
-                  }
-                  if (!email) {
-                    toast("Please enter your Email address");
-                  }
-                }}
-              >
-                <h1 style={{ color: "red" }}>Forgotten Password</h1>
-              </button>
-
               <h1 style={{ color: "red" }}>{errorMessage}</h1>
 
               <div className="divider">OR</div>
@@ -164,10 +162,11 @@ const Login = () => {
             </div>
           </div>
         </div>
+        <ToastContainer />
       </div>
       <Footer></Footer>
     </>
   );
 };
 
-export default Login;
+export default Register;

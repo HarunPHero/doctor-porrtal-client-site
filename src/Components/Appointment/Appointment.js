@@ -8,6 +8,9 @@ const Appointment = () => {
         <div>
            <AppointBanner date={date} setDate={setDate}></AppointBanner>
            <AppointmentAvailable date={date} setDate={setDate}></AppointmentAvailable>
+           <div className='text-center'>
+        <p>Copyright © 2022 doctors-portal.com</p>
+    </div>
         </div>
     );
 };

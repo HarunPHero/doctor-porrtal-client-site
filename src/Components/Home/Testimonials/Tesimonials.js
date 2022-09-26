@@ -6,7 +6,7 @@ import people2 from "../../../images/people2.png"
 import people3 from "../../../images/people3.png"
 const Tesimonials = () => {
   return (
-    <section className="mt-20 m-5">
+    <section className="mt-20 m-5" id="#reviews">
       <div className="flex justify-between">
         <div>
           <h1 className="font-bold text-1xl text-secondary">TESTIMONIAL</h1>

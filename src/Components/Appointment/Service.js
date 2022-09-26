@@ -1,5 +1,4 @@
 import React from 'react';
-import PrimaryButton from '../Shared/PrimaryButton';
 
 const Service = ({service, setTreatment}) => {
     const {name, slots} = service
@@ -17,7 +16,7 @@ const Service = ({service, setTreatment}) => {
         </span>}</p>
     <p>{slots.length} {slots.length >  1 ? 'spaces': "space"} available</p>
     
-    <label onClick={()=> setTreatment(service)} for="booking-modal" className="btn btn-primary uppercase text-white text-bold bg-gradient-to-r from-secondary to-primary ...">Book Appointment</label>
+    <label onClick={()=> setTreatment(service)} htmlFor="booking-modal" className="btn btn-primary uppercase text-white text-bold bg-gradient-to-r from-secondary to-primary ...">Book Appointment</label>
 
   </div>
 </div>
