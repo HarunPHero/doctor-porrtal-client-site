@@ -12,7 +12,7 @@ const Banner = () => {
       <div className="hero-content flex-col lg:flex-row-reverse">
         <img
           src={require("../../../images/chair.png")}
-          className="w-sm rounded-lg shadow-2xl"
+          className="max-w-sm rounded-lg shadow-2xl"
         />
         <div className="pl-5">
           <h1 className="text-6xl font-bold">Your new smile starts here</h1>
