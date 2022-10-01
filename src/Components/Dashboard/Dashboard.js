@@ -26,9 +26,7 @@ const Dashboard = () => {
             </h2>
           </label>
         </div>
-        <h2 className="text-2xl font-bold" style={{ color: "purple" }}>
-          Dashboard
-        </h2>
+        
         <Outlet></Outlet>
       </div>
       <div className="drawer-side">
@@ -42,7 +40,10 @@ const Dashboard = () => {
           </li>
           {admin ? <li style={{color:"white"}} className="font-bold">
             <Link to="/dashboard/patient">All Patients</Link>
+            <Link to="/dashboard/addDoctor">Add doctor</Link>
+            <Link to="/dashboard/manageDoctors">Manage Doctors</Link>
           </li>: ""}
+        
           <li>
           <button className="font-bold text-white" onClick={logOut}>Sign Out</button>
           </li>

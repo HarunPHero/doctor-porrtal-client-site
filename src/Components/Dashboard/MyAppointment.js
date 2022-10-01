@@ -1,61 +1,64 @@
-import { signOut } from 'firebase/auth';
-import React, { useEffect, useState } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
-import auth from '../../firebase.init';
+import { signOut } from "firebase/auth";
+import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { Link, useNavigate } from "react-router-dom";
+import auth from "../../firebase.init";
 
 const MyAppointment = () => {
-    const [appointment, setAppointment] = useState([]);
-    const [user] = useAuthState(auth);
-    const navigate = useNavigate()
-    useEffect(()=>{
-        fetch(`https://vast-wave-13931.herokuapp.com/booking?uid=${user.uid}`,{
-          method:'GET',
-          headers:{
-            'authorization': `Bearer ${localStorage.getItem('accesstoken')}`
-          }
-        })
-        .then(res => {
-          if(res.status === 401 || res.status === 403){
-            signOut(auth);
-            localStorage.removeItem('accesstoken')
-            navigate('/login')
+  const [appointment, setAppointment] = useState([]);
+  const [user] = useAuthState(auth);
+  const navigate = useNavigate();
+  useEffect(() => {
+    fetch(`http://localhost:5000/booking?uid=${user.uid}`, {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
+      },
+    })
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          signOut(auth);
+          localStorage.removeItem("accesstoken");
+          navigate("/login");
+        }
+        return res.json();
+      })
+      .then((data) => setAppointment(data));
+  }, [user]);
+  return (<>
+   <h2 className="text-2xl font-bold mb-5" style={{ color: "purple" }}>
+         My Appointment
+        </h2>
+    <div className="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 gap-5 px-3">
+      {appointment.map((a) => 
+        <div className="card bg-green-50 shadow-xl">
+          <div className="card-body">
+            <h2 className="text-2xl font-bold text-center">{a.treatment}</h2>
+            <p>Patient Name: {a.patient}</p>
+            <p>Booked Date: {a.date}</p>
+            <p>Booked Time: {a.slot}</p>
+            {(a.Price && !a.paid) && <Link to={`/dashboard/payment/${a._id}`}><button className='btn btn-xs btn-secondary'>Proceed to checkout</button></Link>}
+            {(a.Price && a.paid) && <div>
+              <Link to={``}><button className='btn btn-xs btn-primary' disabled>Paid</button></Link>
+              <h2 className="text-green-400">Transition ID: <span className="text-red-500">{a.transitionId}</span></h2>
+              </div>}
+          </div>
+        </div>
+      )}
 
-          }
-        return res.json()
-        })
-        .then(data => setAppointment(data))
-    },[user])
-    return (
-        <div className="overflow-x-auto">
-  <table className="table w-full">
-   
-    <thead>
-      <tr>
-        <th></th>
-        <th>Name</th>
-        <th>Time</th>
-        <th>Date</th>
-        <th>Service</th>
-      </tr>
-    </thead>
-    <tbody>
-     
-      {
-        appointment.map((a, index) => <tr>
+      {/* <tr>
             <th>{index + 1}</th>
             <td>{a.patient}</td>
             <td>{a.slot}</td>
             <td>{a.date}</td>
-            <td>{a.treatment}</td>
-          </tr>)
-      }
-     
-     
-    </tbody>
-  </table>
-</div>
-    );
+            <td>{a.treatment} <br />
+            {(a.Price && !a.paid) && <Link to={`/dashboard/payment/${a._id}`}><button className='btn btn-xs btn-secondary'>Proceed to checkout</button></Link>}
+            {(a.Price && a.paid) && <Link to={``}><button className='btn btn-xs btn-primary' disabled>Paid</button></Link>}
+            </td>
+          </tr> */}
+    </div>
+    </>
+  );
 };
 
 export default MyAppointment;

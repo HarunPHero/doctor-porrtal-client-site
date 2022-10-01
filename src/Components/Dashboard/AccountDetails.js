@@ -5,15 +5,19 @@ import PrimaryButton from "../Shared/PrimaryButton";
 
 const AccountDetails = () => {
   const [user] = useAuthState(auth);
+  const userphoto = user?.photoURL;
 
   return (
     <div>
+       <h2 className="text-2xl font-bold" style={{ color: "purple" }}>
+          My Account
+        </h2>
       <div className="card lg:card-side bg-base-100 shadow-xl m-5">
         <figure>
           <img
             className="ml-2 rounded-full ring-offset-base-100 ring-offset-2"
             src={
-              user?.photoURL ||
+              userphoto ||
               "https://web.programming-hero.com/static/media/profileImage.934e5b10.png"
             }
             alt="Album"

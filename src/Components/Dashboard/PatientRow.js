@@ -2,8 +2,9 @@ import React from "react";
 import { toast } from "react-toastify";
 
 const PatientRow = ({ index, patient, uid, refetch }) => {
+  const PatientImg = patient?.userPhoto;
   const makeAdmin = () => {
-    fetch(`https://vast-wave-13931.herokuapp.com/user/admin/${uid}`, {
+    fetch(`http://localhost:5000/user/admin/${uid}`, {
       method: "PUT",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
@@ -25,6 +26,8 @@ const PatientRow = ({ index, patient, uid, refetch }) => {
       });
   };
   return (
+    <>
+   
     <tr>
       <th>{index + 1}</th>
       <td>
@@ -33,7 +36,7 @@ const PatientRow = ({ index, patient, uid, refetch }) => {
             <div className="mask mask-squircle w-10 h-12">
               <img
                 src={
-                  patient.userPhoto ||
+                  PatientImg ||
                   "https://web.programming-hero.com/static/media/profileImage.934e5b10.png"
                 }
                 alt="Avatar Tailwind CSS Component"
@@ -41,7 +44,7 @@ const PatientRow = ({ index, patient, uid, refetch }) => {
             </div>
           </div>
           <div>
-            <div className="font-bold">{patient?.userName}</div>
+            <div className="font-bold">{patient?.userEmail}</div>
           </div>
         </div>
       </td>
@@ -50,14 +53,13 @@ const PatientRow = ({ index, patient, uid, refetch }) => {
           <button onClick={makeAdmin} className="btn btn-xs">
             Make admin
           </button>
-        ) : (
-          ""
+       ) : (
+          "Admin"
         )}
       </td>
-      <td>
-        <button className="btn btn-xs">Remove user</button>
-      </td>
+      
     </tr>
+    </> 
   );
 };
 

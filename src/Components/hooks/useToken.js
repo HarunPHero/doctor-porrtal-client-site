@@ -4,13 +4,13 @@ import { useState } from "react";
 const useToken = (user) => {
   const [token, setToken] = useState("");
   useEffect(() => {
-    console.log("user inside useToken", user);
-    const uid = user?.user?.uid;
-    const userName = user?.user?.displayName;
-    const userPhoto = user?.user?.photoURL
-    const currentUser = {uid : uid, userName:userName, userPhoto:userPhoto}
+    console.log("user inside useToken", user?.user);
+    const uid = user?.user.uid;
+    const userEmail = user?.user?.email;
+    const userPhoto = user?.user.photoURL
+    const currentUser = {uid : uid, userEmail:userEmail, userPhoto:userPhoto}
     if(uid){
-        fetch(`https://vast-wave-13931.herokuapp.com/user/${uid}`, {
+        fetch(`http://localhost:5000/user/${uid}`, {
             method:'PUT',
             headers:{
                 "content-type":"application/json"

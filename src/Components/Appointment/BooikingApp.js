@@ -5,7 +5,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
 
 const BooikingApp = ({ treatment, date, setTreatment, refetch }) => {
-  const { _id, name, slots } = treatment;
+  const { _id, name, slots, price } = treatment;
   const [user] = useAuthState(auth);
   const formattedDate = format(date, "PP");
   const handleBooking = (event) => {
@@ -22,10 +22,11 @@ const BooikingApp = ({ treatment, date, setTreatment, refetch }) => {
       phone: phone,
       date: formattedDate,
       uid:user.uid,
-      photo: user.photoURL
+      photo: user.photoURL,
+      Price: price
     };
 
-    fetch("https://vast-wave-13931.herokuapp.com/booking", {
+    fetch("http://localhost:5000/booking", {
       method:"POST",
       headers:{
         'content-type':"application/json"
@@ -101,6 +102,15 @@ const BooikingApp = ({ treatment, date, setTreatment, refetch }) => {
               className="input input-bordered w-full max-w-xs m-3"
               disabled
               value={user?.email || ""}
+            />
+            <br />
+            <input
+              name="email"
+              type="email"
+              placeholder="Email"
+              className="input input-bordered w-full max-w-xs m-3"
+              disabled
+              value={`$${price}`}
             />
             <br />
             <input

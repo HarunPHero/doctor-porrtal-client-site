@@ -4,7 +4,7 @@ import Loading from '../Shared/Loading';
 import PatientRow from './PatientRow';
 
 const Patients = () => {
-  const { data: patients, isLoading, refetch} = useQuery('users', () => fetch('https://vast-wave-13931.herokuapp.com/patients', {
+  const { data: patients, isLoading, refetch} = useQuery('users', () => fetch('http://localhost:5000/patients', {
     method: 'GET',
     headers:{
         authorization: `Bearer ${localStorage.getItem('accesstoken')}`
@@ -16,6 +16,9 @@ if (isLoading) {
 
     return (
         <div className="overflow-x-auto w-full">
+           <h2 className="text-2xl font-bold" style={{ color: "purple" }}>
+          All Patients
+        </h2>
   <table className="table w-full">
     
     <thead>
@@ -23,10 +26,10 @@ if (isLoading) {
         <th>
           SI no.
         </th>
-        <th>Name</th>
-        <th>Time</th>
-        <th>Date</th>
-        <th>Service</th>
+        <th>Email</th>
+        <th></th>
+        <th></th>
+        
       </tr>
     </thead>
     <tbody>

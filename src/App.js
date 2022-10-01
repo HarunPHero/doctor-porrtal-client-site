@@ -14,6 +14,10 @@ import MyAppointment from "./Components/Dashboard/MyAppointment";
 import AccountDetails from "./Components/Dashboard/AccountDetails";
 import Patients from "./Components/Dashboard/Patients";
 import RequireAdmin from "./Components/Login/RequiedAdmin/RequiredAdmin";
+import AddDoctor from "./Components/Dashboard/AddDoctor";
+import ManageDoctors from "./Components/Dashboard/ManageDoctors";
+import Payment from "./Components/Dashboard/Payment";
+
 
 function App() {
   return (
@@ -44,6 +48,8 @@ function App() {
             path="myappointment"
             element={<MyAppointment></MyAppointment>}
           ></Route>
+          <Route path="payment/:id" element={<Payment></Payment>}></Route>
+
           <Route
             path="patient"
             element={
@@ -52,8 +58,23 @@ function App() {
               </RequireAdmin>
             }
           ></Route>
+          <Route
+            path="addDoctor"
+            element={
+              <RequireAdmin>
+                <AddDoctor></AddDoctor>
+              </RequireAdmin>
+            }
+          ></Route>
+          <Route
+            path="manageDoctors"
+            element={
+              <RequireAdmin>
+                <ManageDoctors></ManageDoctors>
+              </RequireAdmin>
+            }
+          ></Route>
         </Route>
-
         <Route path="/signUp" element={<Register></Register>}></Route>
       </Routes>
 

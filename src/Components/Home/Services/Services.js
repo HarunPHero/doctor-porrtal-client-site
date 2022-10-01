@@ -26,7 +26,7 @@ const Services = () => {
         ></ServiceCard>
       </div>
 
-      <div className="treatment px-12">
+      <div className="treatment">
       <div className="hero min-h-screen">
   <div className="hero-content flex-col lg:flex-row">
     <img src={require("../../../images/treatment.png")} className="max-w-sm" />
