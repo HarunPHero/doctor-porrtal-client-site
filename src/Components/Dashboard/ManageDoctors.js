@@ -10,7 +10,7 @@ const ManageDoctors = () => {
     isLoading,
     refetch,
   } = useQuery("doctors", () =>
-    fetch(`http://localhost:5000/doctors`, {
+    fetch(`https://vast-wave-13931.herokuapp.com/doctors`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
       },
@@ -22,7 +22,7 @@ const ManageDoctors = () => {
   const handleDelete = (email) => {
     const proceed = window.confirm("Are you want to delete");
     if (proceed) {
-      fetch(`http://localhost:5000/doctors/${email}`, {
+      fetch(`https://vast-wave-13931.herokuapp.com/doctors/${email}`, {
         method: "DELETE",
         headers: {
           authorization: `Bearer ${localStorage.getItem("accesstoken")}`,

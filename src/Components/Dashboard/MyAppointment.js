@@ -9,7 +9,7 @@ const MyAppointment = () => {
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
   useEffect(() => {
-    fetch(`http://localhost:5000/booking?uid=${user.uid}`, {
+    fetch(`https://vast-wave-13931.herokuapp.com/booking?uid=${user.uid}`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accesstoken")}`,

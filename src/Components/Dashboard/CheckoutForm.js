@@ -16,7 +16,7 @@ const CheckoutForm = ({ appointment }) => {
   const price = appointment?.Price;
 
   useEffect(() => {
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://vast-wave-13931.herokuapp.com/create-payment-intent", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -75,7 +75,7 @@ const CheckoutForm = ({ appointment }) => {
         appointment: id,
         transitionId: paymentIntent.id,
       };
-      fetch(`http://localhost:5000/booking/${id}`, {
+      fetch(`https://vast-wave-13931.herokuapp.com/booking/${id}`, {
         method: "PATCH",
         headers: {
           "content-type": "application/json",
@@ -84,7 +84,7 @@ const CheckoutForm = ({ appointment }) => {
         body: JSON.stringify(payment),
       })
         .then((res) => res.json())
-        .then((data) => console.log(data));
+        
 
       navigate("/dashboard/myappointment");
     }

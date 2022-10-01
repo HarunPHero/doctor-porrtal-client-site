@@ -35,7 +35,7 @@ const [token] = useToken(user || user1)
     return <Loading></Loading>;
   }
   const onSubmit = async (data) => {
-    console.log(data);
+    
     await createUserWithEmailAndPassword(data.email, data.password);
     await updateProfile({ displayName: data.name });
     toast("Your profile has been updated");

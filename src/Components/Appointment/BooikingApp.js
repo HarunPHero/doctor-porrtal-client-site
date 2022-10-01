@@ -26,7 +26,7 @@ const BooikingApp = ({ treatment, date, setTreatment, refetch }) => {
       Price: price
     };
 
-    fetch("http://localhost:5000/booking", {
+    fetch("https://vast-wave-13931.herokuapp.com/booking", {
       method:"POST",
       headers:{
         'content-type':"application/json"

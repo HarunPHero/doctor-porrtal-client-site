@@ -1,5 +1,6 @@
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { Link } from "react-router-dom";
 import auth from "../../firebase.init";
 import PrimaryButton from "../Shared/PrimaryButton";
 
@@ -33,7 +34,7 @@ const AccountDetails = () => {
           <p className="text-1xl">{user.email}</p>
           <p className="text-1xl font-bold">Phone:</p>
           <p className="text-1xl">{user.phoneNumber || 'N/A'}</p>
-          <PrimaryButton>Edit Profile</PrimaryButton>
+          <PrimaryButton><Link to={"/dashboard/myappointment"}>Go to your appointment</Link></PrimaryButton>
          
         </div>
       </div>

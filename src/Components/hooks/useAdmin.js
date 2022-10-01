@@ -6,7 +6,7 @@ const useAdmin = (user) => {
   useEffect(() => {
     const uid = user?.uid;
     if (uid) {
-      fetch(`http://localhost:5000/admin/${uid}`, {
+      fetch(`https://vast-wave-13931.herokuapp.com/admin/${uid}`, {
         method: "GET",
         headers: {
           "content-type": "application/json",
