@@ -15,9 +15,9 @@ const MakeAppointment = () => {
         <div className="hero-content flex-col lg:flex-row">
           <div><img src={doctor} className="max-w-sm mt-[-100px] hidden lg:block" alt="" /></div>
           <div>
-            <h1 className="text-1xl font-bold text-secondary">APPOINTMENT</h1>
-            <h1 className="text-4xl text-white">Make Your Appointment Today</h1>
-            <p className="py-6 text-neutral">
+            <h1 className="text-1xl font-bold text-secondary"data-aos="fade-up">APPOINTMENT</h1>
+            <h1 className="text-4xl text-white"data-aos="fade-down">Make Your Appointment Today</h1>
+            <p className="py-6 text-neutral"data-aos="fade-right">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
               non hic soluta vitae commodi quo eligendi ipsa amet dolor error
               voluptatibus magni animi facilis reiciendis maxime, beatae veniam

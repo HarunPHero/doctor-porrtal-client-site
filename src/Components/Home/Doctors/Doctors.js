@@ -19,7 +19,8 @@ const Doctors = () => {
             </h1>
             <h1 className="font-bold text-4xl text-center">Special Dentists</h1>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-5 px-3">
+          <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-5 px-3"data-aos="fade-right"
+    data-aos-duration="3000">
             {doctors.map((d) => (
               <div
                 key={d._id}

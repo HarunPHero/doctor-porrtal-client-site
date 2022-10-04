@@ -2,7 +2,8 @@ import React from "react";
 
 const TestimotionalCard = ({ img, peopleName }) => {
   return (
-    <div className="card shadow-xl">
+    <div className="card shadow-xl"data-aos="fade-up"
+    data-aos-duration="3000">
       <div className="card-body">
         <p>
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores

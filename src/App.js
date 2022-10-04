@@ -1,5 +1,7 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
+import Aos from "aos"
+import "aos/dist/aos.css"
 import Header from "./Components/Header/Header";
 import Home from "./Components/Home/Home/Home";
 import Login from "./Components/Login/Login/Login";
@@ -17,9 +19,14 @@ import RequireAdmin from "./Components/Login/RequiedAdmin/RequiredAdmin";
 import AddDoctor from "./Components/Dashboard/AddDoctor";
 import ManageDoctors from "./Components/Dashboard/ManageDoctors";
 import Payment from "./Components/Dashboard/Payment";
+import { useEffect } from "react";
+
 
 
 function App() {
+  useEffect(()=>{
+    Aos.init({duration:2000})
+  },[])
   return (
     <>
       <Header></Header>

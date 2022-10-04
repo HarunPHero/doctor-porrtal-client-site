@@ -29,8 +29,8 @@ const Services = () => {
       <div className="treatment">
       <div className="hero min-h-screen">
   <div className="hero-content flex-col lg:flex-row">
-    <img src={require("../../../images/treatment.png")} className="max-w-sm" />
-    <div className=" px-6">
+    <img src={require("../../../images/treatment.png")} className="max-w-sm" data-aos="flip-up" />
+    <div className=" px-6"data-aos="fade-down">
       <h1 className="text-4xl font-bold">Exceptional Dental Care, On Your Terms</h1>
       <p className="py-6 text-neutral">Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae quam fugiat eum doloremque consequuntur molestias iste, praesentium commodi quibusdam sint. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, ipsa! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere, nobis.</p>
   <PrimaryButton>Learn more</PrimaryButton>

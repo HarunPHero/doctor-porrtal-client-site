@@ -2,7 +2,7 @@ import React from 'react';
 
 const BlogCard = ({img, doctorName, advise}) => {
     return (
-        <div className="card shadow-xl">
+        <div className="card shadow-xl" data-aos="fade-up">
         <div className="card-body">
         <div className="card-actions">
             <div className="avatar">

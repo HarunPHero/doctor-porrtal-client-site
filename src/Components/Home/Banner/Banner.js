@@ -11,10 +11,12 @@ const Banner = () => {
     >
       <div className="hero-content flex-col lg:flex-row-reverse">
         <img
+          data-aos="zoom-in"
+          data-aos-duration="3000"
           src={require("../../../images/chair.png")}
           className="max-w-sm rounded-lg shadow-2xl"
         />
-        <div className="pl-5">
+        <div className="pl-5" data-aos="fade-right" data-aos-duration="3000">
           <h1 className="text-6xl font-bold">Your new smile starts here</h1>
           <p className="py-6">
             Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
