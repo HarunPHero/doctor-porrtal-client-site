@@ -5,7 +5,7 @@ import { useEffect } from "react";
 const Doctors = () => {
   const [doctors, setDoctors] = useState([]);
   useEffect(() => {
-    fetch(`https://vast-wave-13931.herokuapp.com/doctor`)
+    fetch(`https://doctor-portal-backend.onrender.com/doctor`)
       .then((res) => res.json())
       .then((data) => setDoctors(data));
   }, []);

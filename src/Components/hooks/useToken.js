@@ -10,7 +10,7 @@ const useToken = (user) => {
     const userPhoto = user?.user.photoURL
     const currentUser = {uid : uid, userEmail:userEmail, userPhoto:userPhoto}
     if(uid){
-        fetch(`https://vast-wave-13931.herokuapp.com/user/${uid}`, {
+        fetch(`https://doctor-portal-backend.onrender.com/user/${uid}`, {
             method:'PUT',
             headers:{
                 "content-type":"application/json"

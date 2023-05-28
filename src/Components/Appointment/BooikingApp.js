@@ -26,7 +26,7 @@ const BooikingApp = ({ treatment, date, setTreatment, refetch }) => {
       Price: price
     };
 
-    fetch("https://vast-wave-13931.herokuapp.com/booking", {
+    fetch("https://doctor-portal-backend.onrender.com/booking", {
       method:"POST",
       headers:{
         'content-type':"application/json"

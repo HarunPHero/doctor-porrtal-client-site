@@ -4,7 +4,7 @@ import Loading from '../Shared/Loading';
 import PatientRow from './PatientRow';
 
 const Patients = () => {
-  const { data: patients, isLoading, refetch} = useQuery('users', () => fetch('https://vast-wave-13931.herokuapp.com/patients', {
+  const { data: patients, isLoading, refetch} = useQuery('users', () => fetch('https://doctor-portal-backend.onrender.com/patients', {
     method: 'GET',
     headers:{
         authorization: `Bearer ${localStorage.getItem('accesstoken')}`

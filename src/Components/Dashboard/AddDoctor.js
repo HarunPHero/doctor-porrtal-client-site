@@ -6,7 +6,7 @@ import Loading from "../Shared/Loading";
 
 const AddDoctor = () => {
   const { data:services, isLoading } = useQuery("services", () =>
-    fetch(`https://vast-wave-13931.herokuapp.com/services`).then((res) => res.json())
+    fetch(`https://doctor-portal-backend.onrender.com/services`).then((res) => res.json())
   );
    const image_submition_key = `26cc468f8a4d93702bb0fc9f873e6d18`
   const {
@@ -35,7 +35,7 @@ const AddDoctor = () => {
               speciality:data.speciality,
               photo:img
             }
-            fetch('https://vast-wave-13931.herokuapp.com/doctors', {
+            fetch('https://doctor-portal-backend.onrender.com/doctors', {
               method: 'POST',
               headers: {
                   'content-type': 'application/json',

@@ -16,7 +16,7 @@ const CheckoutForm = ({ appointment }) => {
   const price = appointment?.Price;
 
   useEffect(() => {
-    fetch("https://vast-wave-13931.herokuapp.com/create-payment-intent", {
+    fetch("https://doctor-portal-backend.onrender.com/create-payment-intent", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -75,7 +75,7 @@ const CheckoutForm = ({ appointment }) => {
         appointment: id,
         transitionId: paymentIntent.id,
       };
-      fetch(`https://vast-wave-13931.herokuapp.com/booking/${id}`, {
+      fetch(`https://doctor-portal-backend.onrender.com/booking/${id}`, {
         method: "PATCH",
         headers: {
           "content-type": "application/json",

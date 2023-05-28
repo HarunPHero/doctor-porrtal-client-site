@@ -14,7 +14,7 @@ const stripePromise = loadStripe(
 const Payment = () => {
     
     const {id} = useParams();
-    const url = `https://vast-wave-13931.herokuapp.com/booking/${id}`;
+    const url = `https://doctor-portal-backend.onrender.com/booking/${id}`;
     const {data:appointment, isLoading} = useQuery(['booking', id], ()=> fetch(url,{
         method:'GET',
         headers:{

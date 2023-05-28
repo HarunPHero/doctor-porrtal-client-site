@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 const PatientRow = ({ index, patient, uid, refetch }) => {
   const PatientImg = patient?.userPhoto;
   const makeAdmin = () => {
-    fetch(`https://vast-wave-13931.herokuapp.com/user/admin/${uid}`, {
+    fetch(`https://doctor-portal-backend.onrender.com/user/admin/${uid}`, {
       method: "PUT",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accesstoken")}`,

@@ -9,7 +9,7 @@ const MyAppointment = () => {
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
   useEffect(() => {
-    fetch(`https://vast-wave-13931.herokuapp.com/booking?uid=${user.uid}`, {
+    fetch(`https://doctor-portal-backend.onrender.com/booking?uid=${user.uid}`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
